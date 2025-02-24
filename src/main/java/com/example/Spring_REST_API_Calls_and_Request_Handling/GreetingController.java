@@ -24,4 +24,15 @@ public class GreetingController {
     public String deleteGreeting(){
         return "{\"message\": \"hello, this is a delete request\"}";
     }
+
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/newget")
+    public String getGreetingNew() {
+        return "{\"message\": \"" + greetingService.getGreetingMessage() + "\"}";
+    }
 }
