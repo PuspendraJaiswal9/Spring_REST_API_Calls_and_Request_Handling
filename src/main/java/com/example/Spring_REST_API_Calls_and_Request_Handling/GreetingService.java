@@ -28,7 +28,7 @@ public class GreetingService {
         } else {
             message= "Hello World!";
         }
-        // ✅ Save to Database
+        
         Greeting greeting = new Greeting(message);
         greetingRepository.save(greeting);
         return message;
