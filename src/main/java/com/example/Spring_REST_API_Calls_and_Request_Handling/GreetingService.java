@@ -12,7 +12,7 @@ public class GreetingService {
     public String getGreetingMessage() {
         return "Hello World";
     }
-
+    
     private final GreetingRepository greetingRepository;
 
     public GreetingService(GreetingRepository greetingRepository) {
