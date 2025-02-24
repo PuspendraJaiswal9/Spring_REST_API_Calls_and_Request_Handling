@@ -1,5 +1,7 @@
 package com.example.Spring_REST_API_Calls_and_Request_Handling;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,5 +59,16 @@ public class GreetingController {
     @PutMapping("/update/{id}")
     public String updateGreeting(@PathVariable Long id, @RequestParam String message) {
         return greetingService.updateGreeting(id, message);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteGreeting(@PathVariable Long id) {
+        return greetingService.deleteGreeting(id);
+    }
+
+    @PostMapping("/pos")
+    public ResponseEntity<Greeting> createGreeting(@RequestBody Greeting greeting) {
+        Greeting savedGreeting = greetingService.saveGreeting(greeting.getMessage());
+        return ResponseEntity.ok(savedGreeting);
     }
 }

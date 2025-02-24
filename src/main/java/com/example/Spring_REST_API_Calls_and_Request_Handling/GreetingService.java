@@ -1,5 +1,7 @@
 package com.example.Spring_REST_API_Calls_and_Request_Handling;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,5 +55,21 @@ public class GreetingService {
         } else {
             return "Greeting Not Found!";
         }
+    }
+
+    public ResponseEntity<String> deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            return ResponseEntity.ok("Greeting Deleted Successfully!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greeting Not Found!");
+        }
+    }
+
+    public Greeting saveGreeting(String message) {
+        Greeting greeting = new Greeting(message);
+        Greeting savedGreeting = greetingRepository.save(greeting);
+        System.out.println("Saved Greeting: " + savedGreeting);
+        return savedGreeting;
     }
 }
