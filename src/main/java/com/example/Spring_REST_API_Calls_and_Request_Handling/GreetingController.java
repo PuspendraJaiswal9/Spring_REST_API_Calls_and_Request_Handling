@@ -35,4 +35,11 @@ public class GreetingController {
     public String getGreetingNew() {
         return "{\"message\": \"" + greetingService.getGreetingMessage() + "\"}";
     }
+
+    @GetMapping("/para")
+    public String getGreetingPara(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+        return greetingService.getGreetingMessage(firstName, lastName);
+    }
 }
