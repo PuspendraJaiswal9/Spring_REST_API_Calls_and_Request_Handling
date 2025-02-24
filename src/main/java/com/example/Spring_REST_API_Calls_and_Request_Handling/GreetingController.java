@@ -2,6 +2,8 @@ package com.example.Spring_REST_API_Calls_and_Request_Handling;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
@@ -45,5 +47,10 @@ public class GreetingController {
     @GetMapping("/{id}")
     public String getGreetingById(@PathVariable Long id) {
         return greetingService.getGreetingById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 }
