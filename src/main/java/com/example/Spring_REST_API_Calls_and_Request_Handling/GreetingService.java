@@ -2,6 +2,8 @@ package com.example.Spring_REST_API_Calls_and_Request_Handling;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GreetingService {
     public String getGreetingMessage() {
@@ -29,5 +31,10 @@ public class GreetingService {
         Greeting greeting = new Greeting(message);
         greetingRepository.save(greeting);
         return message;
+    }
+
+    public String getGreetingById(Long id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        return greeting.map(Greeting::getMessage).orElse("Greeting not found!");
     }
 }
